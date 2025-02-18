@@ -40,9 +40,8 @@ $conn->close();
 
 // ✅ Obtener todas las imágenes
 function obtenerImagenes($conn) {
-    $result = $conn->query("SELECT * FROM imagenes");
-    $imagenes = [];
-
+    $result = $conn->query("SELECT * FROM imagenes ORDER BY id DESC");    $imagenes = [];
+    
     while ($row = $result->fetch_assoc()) {
         $imagenes[] = $row;
     }
