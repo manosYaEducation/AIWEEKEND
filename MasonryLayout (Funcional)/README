@@ -1,0 +1,43 @@
+# MasonryLayout
+
+Este proyecto es una implementación de un diseño de mampostería (Masonry Layout) utilizando HTML, CSS y JavaScript.
+
+## Descripción
+
+El diseño de mampostería es una técnica de diseño web en la que los elementos se colocan en una cuadrícula de manera que se minimicen los espacios vacíos. Este proyecto demuestra cómo crear un diseño de mampostería responsivo y atractivo.
+
+## Características
+
+- Diseño responsivo
+- Fácil de personalizar
+- Compatible con todos los navegadores modernos
+
+## Instalación
+
+1. Clona este repositorio en tu máquina local:
+    ```
+    git clone https://github.com/tu-usuario/MasonryLayout.git
+    ```
+2. Navega al directorio del proyecto:
+    ```
+    cd MasonryLayout
+    ```
+3. Abre el archivo `index.html` en tu navegador para ver el diseño en acción.
+
+## Uso
+
+Puedes personalizar el diseño de mampostería modificando los archivos CSS y JavaScript según tus necesidades. Asegúrate de mantener la estructura HTML para que el diseño funcione correctamente.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tu característica (`git checkout -b feature/nueva-caracteristica`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva característica'`).
+4. Sube tus cambios a tu fork (`git push origin feature/nueva-caracteristica`).
+5. Crea un Pull Request en este repositorio.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para obtener más información.

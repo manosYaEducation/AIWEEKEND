@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 }
 
 // URL de la imagen a insertar
-$image_url = "https://images.squarespace-cdn.com/content/v1/5d77a7f8ad30356d21445262/1695000300830-5TKAFHC2EBYTTM2QUWUP/fotos-de-perfil-blanco-y-negro.jpg";
+$image_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwr_zZjgvmu4BccwDNIHic8K5dyehw7cSYA&s";
 
 // Verificar si la tabla existe
 $table_check = $conn->query("SHOW TABLES LIKE 'imagenes'");

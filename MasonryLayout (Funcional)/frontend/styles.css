@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.masonry {
+    column-count: 4;
+    padding: 1em;
+}
+
+.masonry img {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.masonry img:hover {
+    transform: scale(1.01);
+}
+
+
+
+/* @media (max-width: 1200px) {
+    .masonry {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 800px) {
+    .masonry {
+        column-count: 2;
+    }
+} */
