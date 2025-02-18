@@ -23,7 +23,7 @@ if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
     
     if (!isset($data["url"]) || empty($data["url"])) {
-        echo json_encode(["error" => "URL de imagen requerida"]);
+        echo json_encode(["error" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVkz3sMnUJmvkNyaaxkgVpEIp0SRzaZQWITw&s"]);
         exit;
     }
 

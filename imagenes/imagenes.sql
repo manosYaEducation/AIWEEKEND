@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 17-02-2025 a las 23:22:33
+-- Tiempo de generación: 18-02-2025 a las 15:29:07
 -- Versión del servidor: 9.1.0
 -- Versión de PHP: 8.1.31
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `imagenes` (
   `url` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes`
@@ -43,7 +43,12 @@ INSERT INTO `imagenes` (`id`, `url`, `created_at`) VALUES
 (1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvK1zUY-hpRT-H2-KIOk0Efymz7mStxSK6EQ&s', '2025-02-17 22:55:55'),
 (2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvK1zUY-hpRT-H2-KIOk0Efymz7mStxSK6EQ&s', '2025-02-17 22:56:50'),
 (3, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFhUXFxcYGBcYFhgWGBgVFxcWFxoYFRcYHSggGBolGxUXITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGy0lICUtKy0tLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOMA3gMBIgACEQEDEQH/', '2025-02-17 22:57:27'),
-(4, 'https://images.squarespace-cdn.com/content/v1/5d77a7f8ad30356d21445262/1695000300830-5TKAFHC2EBYTTM2QUWUP/fotos-de-perfil-blanco-y-negro.jpg', '2025-02-17 22:58:21');
+(4, 'https://images.squarespace-cdn.com/content/v1/5d77a7f8ad30356d21445262/1695000300830-5TKAFHC2EBYTTM2QUWUP/fotos-de-perfil-blanco-y-negro.jpg', '2025-02-17 22:58:21'),
+(5, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPiFrwekd2lvtAPg_pEk4bdSiEZ_BA4xe82g&s', '2025-02-18 13:52:20'),
+(6, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPiFrwekd2lvtAPg_pEk4bdSiEZ_BA4xe82g&s', '2025-02-18 15:13:09'),
+(7, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwr_zZjgvmu4BccwDNIHic8K5dyehw7cSYA&s', '2025-02-18 15:16:21'),
+(8, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwr_zZjgvmu4BccwDNIHic8K5dyehw7cSYA&s', '2025-02-18 15:16:37'),
+(9, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwr_zZjgvmu4BccwDNIHic8K5dyehw7cSYA&s', '2025-02-18 15:20:10');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
