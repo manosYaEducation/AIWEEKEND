@@ -41,3 +41,20 @@ Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos 
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para obtener más información.
+
+
+
+ARRAY CONEJITOS:
+
+const images = [
+            'https://i.pinimg.com/736x/dd/83/e9/dd83e9e38b29f0f88b90961899c1baba.jpg',
+            'https://i.pinimg.com/236x/b5/f4/51/b5f4517b712c1dedef1e9cce09b5f4c3.jpg',
+            'https://i.pinimg.com/236x/0a/94/d5/0a94d526a28160427e5c635971db94fe.jpg',
+            'https://i.pinimg.com/474x/cd/a1/af/cda1af70234f6e2ee53d46c174ff3b8d.jpg',
+            'https://i.pinimg.com/474x/9a/ce/3b/9ace3b13f720d5d2fefb3169c0cdd3d2.jpg',
+            'https://i.pinimg.com/736x/a9/b6/3a/a9b63a422d94a0db13bb10574b509e27.jpg',
+            'https://i.pinimg.com/474x/3e/08/1c/3e081cb934a57c99ac39acc137685f00.jpg',
+            'https://i.pinimg.com/236x/44/3e/be/443ebe1eba58f417345d5aa05b5e8231.jpg',
+            'https://i.pinimg.com/736x/55/a6/24/55a624050483495a32245dd992228964.jpg',
+            'https://i.pinimg.com/736x/a2/05/f5/a205f573f9126c45e46b49fd81b3d6f5.jpg'
+        ];
