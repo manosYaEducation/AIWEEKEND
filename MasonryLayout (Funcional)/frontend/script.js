@@ -1,17 +1,19 @@
- const masonry = document.querySelector('.masonry');
+import { apiUrl } from './config.js';
+
+const masonry = document.querySelector('.masonry');
 
 async function fetchImages() {
     try {
-        const response = await fetch('http://localhost/MasonryLayout/backend/get_all.php');
+        const response = await fetch(apiUrl);
         const images = await response.json();
 
         images.forEach(imgData => {
             const imgElement = document.createElement('img');
-             imgElement.src = imgData.url;
-           masonry.appendChild(imgElement);
-      });
+            imgElement.src = imgData.url;
+            masonry.appendChild(imgElement);
+        });
     } catch (error) {
-       console.error('Error...', error);
+        console.error('Error...', error);
     }
 }
 
