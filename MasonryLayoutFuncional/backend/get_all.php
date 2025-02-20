@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // Cargar variables de entorno usando ruta relativa
-$env_file = '../../.env';  // Subimos dos niveles desde backend hasta AIWEEKEND
+$env_file = '../.env';  // Subimos dos niveles desde backend hasta AIWEEKEND
 if (!file_exists($env_file)) {
     die(json_encode(["error" => "Archivo .env no encontrado en: " . $env_file]));
 }
