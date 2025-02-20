@@ -1,3 +1,13 @@
+header{
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    width: 100vw;
+    z-index: 10; 
+    border-bottom: 2px solid #fffeff;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -8,6 +18,7 @@ body {
 .masonry {
     column-count: 4;
     padding: 1em;
+    margin-top: 5px;
 }
 
 .masonry img {
@@ -55,8 +66,6 @@ body {
 .flip-container.flipped .flipper {
     transform: rotateY(180deg);
 }
-
-
 
 
  @media (max-width: 1200px) {

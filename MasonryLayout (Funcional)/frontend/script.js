@@ -32,10 +32,11 @@ async function fetchImages() {
                 container.style.height = `${container.offsetWidth * aspectRatio}px`;
             };
 
-            // añade efecto de volteo al hacer clic
-            container.addEventListener('click', () => {
-                container.classList.toggle('flipped');
-            });
+            // Agregar el efecto de volteo y mostrar el mensaje
+        container.addEventListener('click', () => {
+            container.classList.toggle('flipped');
+            document.getElementById('result').innerText = imgData.observacion;
+        });
         });
     } catch (error) {
         console.error('error fetching images:', error);
