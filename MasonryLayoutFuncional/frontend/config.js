@@ -2,7 +2,7 @@
 
 const config = {
     development: {
-        apiUrl: 'http://localhost/MasonryLayout/backend/get_all.php'
+        apiUrl: 'http://localhost:3000/MasonryLayoutFuncional/backend/get_all.php'
     },
     production: {
         apiUrl: 'https://www.alphadocere.cl/API/backend/get_all.php'

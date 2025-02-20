@@ -1,115 +1,147 @@
-const masonry = document.querySelector('.masonry');
+const masonry = document.querySelector(".masonry");
+let currentPage = 1;
+let totalPages = 1;
+const IMAGES_PER_PAGE = 6;
 
-// Crear botones de navegación
-const prevPageButton = document.createElement('button');
-prevPageButton.innerText = 'Página Anterior';
-prevPageButton.style.display = 'none'; // Se oculta al inicio
+// Crear contenedor de paginación
+const paginationContainer = document.createElement("div");
+paginationContainer.className = "pagination-container";
+document.body.insertBefore(paginationContainer, masonry.nextSibling);
 
-const nextPageButton = document.createElement('button');
-nextPageButton.innerText = 'Siguiente Página';
-nextPageButton.style.display = 'none'; // Se oculta al inicio
-
-// Agregar los botones al DOM
-document.body.appendChild(prevPageButton);
-document.body.appendChild(nextPageButton);
-
-let images = [];
-let currentPage = 0;
-const imagesPerPage = 4;
-
-// Función para obtener las imágenes del backend
-async function fetchImages() {
-    try {
-        const response = await fetch('http://localhost/MansoryLayoutGit/MasonryLayoutFuncional/backend/get_all.php');
-        images = await response.json();
-        if (images.length > 0) {
-            renderImages();
-            updateButtons();
-        }
-    } catch (error) {
-        console.error('Error al obtener imágenes:', error);
-    }
+// Función para mezclar array aleatoriamente
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
-// Función para renderizar imágenes por página
-function renderImages() {
-    // Limpiamos el contenedor antes de agregar nuevas imágenes
-    masonry.innerHTML = '';
+// Función para obtener imágenes
+async function fetchImages(page = 1) {
+  try {
+    document.getElementById("result").innerText = "Cargando imágenes...";
 
-    // Obtener las imágenes de la página actual
-    const start = currentPage * imagesPerPage;
-    const end = start + imagesPerPage;
-    const imagesToShow = images.slice(start, end);
+    const response = await fetch(
+      `http://localhost:3000/MasonryLayoutFuncional/backend/get_all.php?page=${page}`
+    );
+    const data = await response.json();
 
-    imagesToShow.forEach(imgData => {
-        const container = document.createElement('div');
-        container.className = 'flip-container';
+    if (data.images && data.images.length > 0) {
+      // Mezclar las imágenes aleatoriamente
+      const shuffledImages = shuffleArray([...data.images]);
+      renderImages(shuffledImages);
+      totalPages = data.totalPages;
+      currentPage = data.currentPage;
+      updatePagination();
+      document.getElementById(
+        "result"
+      ).innerText = `Mostrando página ${currentPage} de ${totalPages} (Total: ${data.total} imágenes)`;
+    } else {
+      document.getElementById("result").innerText =
+        "No hay imágenes para mostrar en esta página";
+    }
+  } catch (error) {
+    console.error("Error al obtener imágenes:", error);
+    document.getElementById("result").innerText =
+      "Error al cargar las imágenes";
+  }
+}
 
-        const flipper = document.createElement('div');
-        flipper.className = 'flipper';
+// Función para renderizar imágenes
+function renderImages(images) {
+  masonry.innerHTML = "";
 
-        const frontImg = document.createElement('img');
-        frontImg.className = 'front';
-        frontImg.src = imgData.url;
+  const gridContainer = document.createElement("div");
+  gridContainer.className = "grid-container";
 
-        const backImg = document.createElement('img');
-        backImg.className = 'back';
-        backImg.src = imgData.url_ia;
+  // Asignar aleatoriamente cuáles serán las imágenes destacadas
+  const featuredIndices = shuffleArray([...Array(images.length).keys()]).slice(
+    0,
+    2
+  );
 
-        flipper.appendChild(frontImg);
-        flipper.appendChild(backImg);
-        container.appendChild(flipper);
-        masonry.appendChild(container);
+  images.forEach((imgData, index) => {
+    const container = document.createElement("div");
+    container.className = "flip-container grid-item";
 
-        // Ajustar el tamaño de la imagen
-        frontImg.onload = function () {
-            const aspectRatio = this.naturalHeight / this.naturalWidth;
-            container.style.height = `${container.offsetWidth * aspectRatio}px`;
-        };
+    // Asignar featured aleatoriamente
+    if (featuredIndices.includes(index)) {
+      container.classList.add("featured");
+    }
 
-        // Agregar efecto de volteo y mostrar observación
-        container.addEventListener('click', () => {
-            container.classList.toggle('flipped');
-            document.getElementById('result').innerText = imgData.observacion;
-        });
+    const flipper = document.createElement("div");
+    flipper.className = "flipper";
+
+    const frontImg = document.createElement("img");
+    frontImg.className = "front";
+    frontImg.src = imgData.url;
+
+    // Imagen de carga mientras se carga la imagen real
+    frontImg.style.opacity = "0";
+    frontImg.onload = () => {
+      frontImg.style.opacity = "1";
+      container.style.transform = "translateY(0)";
+    };
+
+    const backImg = document.createElement("img");
+    backImg.className = "back";
+    backImg.src = imgData.url_ia;
+
+    flipper.appendChild(frontImg);
+    flipper.appendChild(backImg);
+    container.appendChild(flipper);
+    gridContainer.appendChild(container);
+
+    // Evento de click
+    container.addEventListener("click", () => {
+      container.classList.toggle("flipped");
+      const resultDisplay = document.getElementById("result");
+      resultDisplay.innerText = imgData.observacion;
     });
+  });
 
-    // Actualizar estado de los botones
-    updateButtons();
+  masonry.appendChild(gridContainer);
 }
 
-// Función para actualizar la visibilidad de los botones
-function updateButtons() {
-    prevPageButton.style.display = currentPage > 0 ? 'block' : 'none';
-    nextPageButton.style.display = (currentPage + 1) * imagesPerPage < images.length ? 'block' : 'none';
+// Función para actualizar la paginación
+function updatePagination() {
+  paginationContainer.innerHTML = "";
+
+  // Solo mostrar botones si hay más de una página
+  if (totalPages > 1) {
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement("button");
+      pageButton.className = `page-button ${i === currentPage ? "active" : ""}`;
+      pageButton.innerText = i;
+      pageButton.onclick = () => {
+        if (i !== currentPage) {
+          fetchImages(i);
+        }
+      };
+      paginationContainer.appendChild(pageButton);
+    }
+  }
 }
 
-// Evento del botón "Siguiente Página"
-nextPageButton.addEventListener('click', () => {
-    if ((currentPage + 1) * imagesPerPage < images.length) {
-        currentPage++;
-        renderImages();
-    }
-});
+// Botón de reorganizar
+const shuffleButton = document.createElement("button");
+shuffleButton.innerText = "Reorganizar";
+shuffleButton.className = "page-button shuffle-button";
+shuffleButton.onclick = () => fetchImages(currentPage);
+document.body.insertBefore(shuffleButton, paginationContainer);
 
-// Evento del botón "Página Anterior"
-prevPageButton.addEventListener('click', () => {
-    if (currentPage > 0) {
-        currentPage--;
-        renderImages();
-    }
-});
-
-// Cargar las imágenes al inicio
+// Inicializar la página
 fetchImages();
 
-// Ajustar tamaño de imagen cuando se cambia el tamaño de la ventana
-window.addEventListener('resize', () => {
-    document.querySelectorAll('.flip-container').forEach(container => {
-        const img = container.querySelector('.front');
-        if (img.naturalWidth) {
-            const aspectRatio = img.naturalHeight / img.naturalWidth;
-            container.style.height = `${container.offsetWidth * aspectRatio}px`;
-        }
-    });
+// Manejar resize de la ventana
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".front").forEach((img) => {
+    if (img.naturalWidth) {
+      const container = img.closest(".grid-item");
+      if (container) {
+        container.style.height = `${container.offsetWidth}px`;
+      }
+    }
+  });
 });
