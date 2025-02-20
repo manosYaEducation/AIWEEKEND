@@ -1,0 +1,29 @@
+# 📷 API de Imágenes - Masonry Layout Funcional
+
+Este proyecto permite insertar y obtener imágenes desde una base de datos mediante solicitudes HTTP utilizando Postman.
+
+## 🚀 Insertar Datos
+
+Para insertar una imagen, realiza una solicitud **POST** a la siguiente URL:
+
+```
+http://localhost:3000/MasonryLayoutFuncional/backend/post_image_ba64.php
+```
+
+### 🔹 Formato del JSON
+
+```json
+{
+  "url": "https://cdn.prod.website-files.com/63634f4a7b868a399577cf37/663ecfd4dff0a4174fcb7461_personalidad%20del%20gato%20negro.jpg",
+  "url_ia": "https://wallpapers.com/images/hd/4k-ultra-hd-galaxy-red-clouds-8djutsmv9kwkls6p.jpg",
+  "observacion": "gato blanco y negro"
+}
+```
+
+## 📥 Obtener Datos
+
+Para obtener todas las imágenes almacenadas en la base de datos, realiza una solicitud **GET** a la siguiente URL:
+
+```
+http://localhost:3000/MasonryLayoutFuncional/backend/get_all.php
+```

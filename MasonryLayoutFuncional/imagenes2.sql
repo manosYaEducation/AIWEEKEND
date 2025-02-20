@@ -6,3 +6,6 @@ CREATE TABLE IF NOT EXISTS imagenes (
   created_at timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--Para insercion
+

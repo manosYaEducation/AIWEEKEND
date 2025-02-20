@@ -3,7 +3,7 @@ const masonry = document.querySelector('.masonry');
 
 async function fetchImages() {
     try {
-        const response = await fetch('http://localhost/masonrylayout/backend/get_all.php');
+        const response = await fetch('http://localhost:3000/MasonryLayoutFuncional/backend/get_all.php');
         const images = await response.json();
 
         images.forEach(imgData => {

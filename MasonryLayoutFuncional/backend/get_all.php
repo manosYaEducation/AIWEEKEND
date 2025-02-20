@@ -4,19 +4,22 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 
-// Configuración de la base de datos
-$host = "localhost";
-$dbname = "pruebaimagen2";
-$username = "root";
-$password = "";
-$host = "localhost:3307";
+// Cargar variables de entorno usando ruta relativa
+$env_file = '../../.env';  // Subimos dos niveles desde backend hasta AIWEEKEND
+if (!file_exists($env_file)) {
+    die(json_encode(["error" => "Archivo .env no encontrado en: " . $env_file]));
+}
+
+$env = parse_ini_file($env_file);
+$host = $env['DB_HOST'];
+$username = $env['DB_USER'];
+$password = $env['DB_PASSWORD'];
+$dbname = $env['DB_NAME'];
 
 // Conectar con MySQL
 $conn = new mysqli($host, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die(json_encode(["error" => "Error de conexión a la base de datos: " . $conn->connect_error]));
-}
+
 
 // Obtener el método HTTP
 $method = $_SERVER["REQUEST_METHOD"];
@@ -39,8 +42,10 @@ switch ($method) {
 $conn->close();
 
 // ✅ Obtener todas las imágenes
-function obtenerImagenes($conn) {
-    $result = $conn->query("SELECT * FROM imagenes ORDER BY id DESC");    $imagenes = [];
+function obtenerImagenes($conn)
+{
+    $result = $conn->query("SELECT * FROM imagenes ORDER BY id DESC");
+    $imagenes = [];
     while ($row = $result->fetch_assoc()) {
         $imagenes[] = $row;
     }
@@ -49,9 +54,10 @@ function obtenerImagenes($conn) {
 }
 
 // ✅ Guardar una nueva imagen o actualizar la última registrada
-function guardarOActualizarImagen($conn) {
+function guardarOActualizarImagen($conn)
+{
     $data = json_decode(file_get_contents("php://input"), true);
-    
+
     if (!isset($data["url"]) || empty($data["url"])) {
         echo json_encode(["error" => "URL de imagen requerida"]);
         exit;
@@ -76,7 +82,7 @@ function guardarOActualizarImagen($conn) {
     } else {
         // Si no hay imágenes, insertar la nueva
         $sql = "INSERT INTO imagenes (url) VALUES ('$url')";
-        
+
         if ($conn->query($sql) === TRUE) {
             echo json_encode(["message" => "Imagen guardada exitosamente", "id" => $conn->insert_id, "new_url" => $url]);
         } else {
@@ -86,9 +92,10 @@ function guardarOActualizarImagen($conn) {
 }
 
 // ✅ Eliminar una imagen
-function eliminarImagen($conn) {
+function eliminarImagen($conn)
+{
     $data = json_decode(file_get_contents("php://input"), true);
-    
+
     if (!isset($data["id"])) {
         echo json_encode(["error" => "ID requerido"]);
         exit;
@@ -103,4 +110,3 @@ function eliminarImagen($conn) {
         echo json_encode(["error" => "Error al eliminar la imagen"]);
     }
 }
-?>
