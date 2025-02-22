@@ -1,0 +1,828 @@
+/* Animación de estrellas cayendo */
+@keyframes shooting-star {
+    0% {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-1000px) translateY(1000px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 6px;
+    /* Más grande */
+    height: 6px;
+    background: linear-gradient(45deg, #00ffff, #ffffff);
+    filter: drop-shadow(0 0 15px #00ffff) drop-shadow(0 0 30px #00ffff) drop-shadow(0 0 45px #ffffff);
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    /* Cola más larga */
+    height: 3px;
+    background: linear-gradient(90deg, #00ffff, transparent);
+    filter: drop-shadow(0 0 10px #00ffff);
+}
+
+
+/* Generar múltiples estrellas con diferentes posiciones y retrasos */
+.shooting-star:nth-child(1) {
+    top: 0;
+    right: 10%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 0s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 0;
+    right: 20%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 1s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 0;
+    right: 30%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 1.5s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 0;
+    right: 40%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 2s;
+}
+
+.shooting-star:nth-child(5) {
+    top: 0;
+    right: 50%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 2.5s;
+}
+
+/* Agregar más posiciones para las estrellas fugaces */
+.shooting-star:nth-child(6) {
+    top: 0;
+    right: 60%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 3s;
+}
+
+.shooting-star:nth-child(7) {
+    top: 0;
+    right: 70%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 3.5s;
+}
+
+.shooting-star:nth-child(8) {
+    top: 0;
+    right: 80%;
+    animation: shooting-star 3s linear infinite;
+    animation-delay: 4s;
+}
+
+/* Estrellas brillantes fijas */
+.twinkling-star {
+    width: 4px;
+    /* Más grande */
+    height: 4px;
+    background-color: #00ffff;
+    filter: drop-shadow(0 0 8px #00ffff);
+    /* Más brillo */
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes twinkleHeader {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Generar estrellas brillantes en posiciones aleatorias */
+.twinkling-star:nth-child(6) {
+    box-shadow: 0 0 15px #00ffff;
+}
+
+.twinkling-star:nth-child(7) {
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+
+.twinkling-star:nth-child(8) {
+    box-shadow: 0 0 15px #ff8800;
+}
+
+
+.twinkling-star:nth-child(9) {
+    box-shadow: 0 0 15px #00ffff;
+}
+
+
+.twinkling-star:nth-child(10) {
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+
+/* Estilos base */
+body {
+    background: #050510;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(69, 183, 209, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(132, 79, 186, 0.05) 0%, transparent 50%);
+    animation: backgroundMove 20s ease-in-out infinite;
+    z-index: -1;
+}
+
+.background-shapes {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: floatShape 15s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #45B7D1;
+    transform: rotate(45deg);
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #844FBA;
+    border-radius: 50%;
+    animation-delay: -5s;
+}
+
+.shape:nth-child(3) {
+    top: 40%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #45B7D1;
+    border-radius: 30%;
+    animation-delay: -2s;
+}
+
+@keyframes spark {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4),
+            0 0 0 0 rgba(0, 255, 255, 0.2);
+        transform: scale(1);
+    }
+
+    25% {
+        box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.8),
+            0 0 80px 40px rgba(0, 255, 255, 0.6);
+        transform: scale(0.95);
+    }
+
+    50% {
+        box-shadow: 0 0 80px 30px rgba(255, 255, 255, 0.6),
+            0 0 100px 50px rgba(0, 255, 255, 0.8);
+        transform: scale(0.98);
+    }
+
+    75% {
+        box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.4),
+            0 0 60px 30px rgba(0, 255, 255, 0.6);
+        transform: scale(1.02);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0),
+            0 0 0 0 rgba(0, 255, 255, 0);
+        transform: scale(1);
+    }
+}
+
+/* Efecto de onda expansiva */
+@keyframes ripple {
+    0% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes glowingBorder {
+
+    0%,
+    100% {
+        border-color: rgba(0, 255, 255, 1);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+            inset 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+
+    50% {
+        border-color: rgba(255, 0, 255, 1);
+        box-shadow: 0 0 40px rgba(255, 0, 255, 0.8),
+            inset 0 0 40px rgba(255, 0, 255, 0.8);
+    }
+}
+
+
+@keyframes backgroundMove {
+
+    0%,
+    100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+}
+
+@keyframes borderRotate {
+    0% {
+        border-image: linear-gradient(45deg,
+                #ff00ff, #00ffff, #ff8800, #ff00ff) 1;
+    }
+
+    50% {
+        border-image: linear-gradient(225deg,
+                #ff00ff, #00ffff, #ff8800, #ff00ff) 1;
+    }
+
+    100% {
+        border-image: linear-gradient(405deg,
+                #ff00ff, #00ffff, #ff8800, #ff00ff) 1;
+    }
+}
+
+@keyframes floatShape {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Header mágico con gradiente */
+.magic-robotic-header {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(45deg, #4A148C, #673AB7, #4A148C);
+    color: white;
+    position: relative;
+    min-height: 80px;
+    overflow: hidden;
+    border-bottom: 4px solid #9C27B0;
+    /* Borde inferior más marcado */
+    box-shadow: 0 4px 15px rgba(74, 20, 140, 0.5);
+    /* Sombra más pronunciada */
+    margin-bottom: -1px;
+    /* Elimina el espacio entre el header y el contenido */
+}
+
+.magic-robotic-header::before {
+    content: '★';
+    position: absolute;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.2);
+    animation: twinkleHeader 2s ease-in-out infinite;
+}
+
+.magic-robotic-header::after {
+    content: '✧';
+    position: absolute;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.15);
+    animation: twinkleHeader 3s ease-in-out infinite;
+}
+
+/* Posiciones aleatorias para las estrellas */
+.magic-robotic-header::before {
+    top: 10%;
+    left: 5%;
+}
+
+.magic-robotic-header::after {
+    top: 70%;
+    right: 10%;
+}
+
+.header-star {
+    position: absolute;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.2);
+    animation: twinkleHeader 2s ease-in-out infinite;
+}
+
+.header-star:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0.3s;
+}
+
+.header-star:nth-child(2) {
+    top: 30%;
+    right: 30%;
+    animation-delay: 0.6s;
+}
+
+.header-star:nth-child(3) {
+    top: 70%;
+    left: 40%;
+    animation-delay: 0.9s;
+}
+
+.header-star:nth-child(4) {
+    top: 40%;
+    right: 20%;
+    animation-delay: 1.2s;
+}
+
+.header-star:nth-child(5) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 1.5s;
+}
+
+
+
+
+
+
+.result-display {
+    font-size: 20px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Efectos del header */
+.magic-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #45B7D1, transparent);
+    animation: scan 2s ease-in-out infinite;
+}
+
+@keyframes scan {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+}
+
+.magic-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.magic-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #45B7D1;
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Partículas con posiciones y delays */
+.particle-1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    left: 30%;
+    animation-delay: 0.5s;
+}
+
+.particle-3 {
+    left: 50%;
+    animation-delay: 1s;
+}
+
+.particle-4 {
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.particle-5 {
+    left: 90%;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Contenedor masonry y grid */
+.masonry {
+    padding: 20px;
+    margin-top: 0;
+    /* Elimina el margen superior */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "main main main right-top right-top"
+        "main main main right-bottom right-bottom"
+        "left-square left-square right-rect right-rect right-rect"
+        "bottom-left bottom-left big-bottom big-bottom big-bottom";
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Flip containers */
+.flip-container {
+    border: 3px solid transparent;
+    position: relative;
+    background: linear-gradient(#0b0b1f, #0b0b1f) padding-box,
+        linear-gradient(var(--gradient-angle, 45deg),
+            #ff00ff 0%,
+            #00ffff 25%,
+            #ff8800 50%,
+            #ff00ff 75%,
+            #00ffff 100%) border-box;
+    animation: borderRotate 8s linear infinite,
+        borderGlow 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.3),
+        0 0 60px rgba(255, 136, 0, 0.2);
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.5)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.5)) drop-shadow(0 0 35px rgba(255, 136, 0, 0.3));
+    }
+}
+
+@keyframes borderRotate {
+    0% {
+        --gradient-angle: 0deg;
+    }
+
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
+
+.flip-container::before,
+.flip-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Grid areas */
+.flip-container[style*="grid-area: main"] {
+    height: auto;
+    min-height: 400px;
+}
+
+/* Agregar clase para la animación de chispas */
+.flip-container.spark {
+    animation: spark 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-container.spark::before,
+.flip-container.spark::after {
+    animation: ripple 0.8s cubic-bezier(0, 0, 0.2, 1);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.flip-container.spark::after {
+    animation-delay: 0.2s;
+}
+
+
+.flip-container[style*="grid-area: right-top"],
+.flip-container[style*="grid-area: right-bottom"] {
+    height: auto;
+    min-height: 250px;
+}
+
+.flip-container[style*="grid-area: left-square"],
+.flip-container[style*="grid-area: right-rect"] {
+    height: auto;
+    min-height: 300px;
+}
+
+.flip-container[style*="grid-area: bottom-left"],
+.flip-container[style*="grid-area: big-bottom"] {
+    height: auto;
+    min-height: 250px;
+}
+
+/* Flipper y caras */
+.flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border: 3px solid transparent;
+    animation: glowingBorder 2s infinite;
+}
+
+.flip-container.flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+.front {
+    z-index: 2;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+/* Imágenes */
+.front img,
+.back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Mensaje */
+.mensaje {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 18px;
+    line-height: 1.6;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.page-button {
+    background: linear-gradient(45deg, #45B7D1, #844FBA);
+    border: none;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.page-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(69, 183, 209, 0.3);
+}
+
+.page-button.active {
+    background: linear-gradient(45deg, #844FBA, #45B7D1);
+    transform: scale(1.05);
+}
+
+.shuffle-button {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading */
+.loading-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(45deg, #45B7D1, #844FBA);
+    padding: 20px 40px;
+    border-radius: 10px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loading-text.show {
+    opacity: 1;
+    visibility: visible;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-areas:
+            "main main"
+            "right-top right-bottom"
+            "left-square right-rect"
+            "bottom-left big-bottom";
+    }
+
+    .flip-container {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-areas:
+            "main"
+            "right-top"
+            "right-bottom"
+            "left-square"
+            "right-rect"
+            "bottom-left"
+            "big-bottom";
+        padding: 10px;
+    }
+
+    .flip-container {
+        height: 531px !important;
+        margin: 10px 0;
+    }
+
+    .loading-text {
+        font-size: 18px;
+        padding: 15px 30px;
+    }
+
+    .page-button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+}
